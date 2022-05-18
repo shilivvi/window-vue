@@ -1,10 +1,14 @@
 import { createStore } from "vuex";
 import defaultWindow from "@/helpers/default-window";
 import { uuid } from "@/helpers/uuid";
+import { saveState } from "@/helpers/save-state";
+
+const windows = JSON.parse(localStorage.getItem("windows")) || defaultWindow;
 
 export default createStore({
+  plugins: [saveState],
   state: {
-    windows: defaultWindow,
+    windows: windows,
     indexWindow: 0,
   },
   getters: {},
