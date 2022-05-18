@@ -34,8 +34,8 @@
                 :class="{
                   'tabs-header__tab--active': activeWindowId === window.id,
                 }"
-                @click="selectWindow(window.id)"
                 @deletWindow="delWindow"
+                @click="selectWindow(window.id)"
               />
             </ul>
             <button
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { ref, computed } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import TabHeader from "@/components/tab-header.vue";
 
@@ -73,11 +73,7 @@ export default {
   setup() {
     const store = useStore();
     const windows = computed(() => store.state.windows);
-    const activeWindowId = ref(store.state.windows[0].id);
-
-    function selectWindow(id) {
-      activeWindowId.value = id;
-    }
+    const activeWindowId = computed(() => store.state.activeWindowId);
 
     function addWindow() {
       store.commit("ADD_WINDOW");
@@ -85,17 +81,18 @@ export default {
 
     function delWindow(id) {
       store.commit("DEL_WINDOW", { id });
-      activeWindowId.value = store.state.windows[0].id;
-      console.log(store.state.windows[0].id);
-      console.log(activeWindowId);
+    }
+
+    function selectWindow(id) {
+      store.commit("SECELT_WINDOW", { id });
     }
 
     return {
       windows,
       addWindow,
       delWindow,
-      selectWindow,
       activeWindowId,
+      selectWindow,
     };
   },
 };

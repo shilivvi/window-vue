@@ -1,15 +1,42 @@
 <template>
   <app-header />
+  <main>
+    <app-body
+      v-for="window in windows"
+      :key="window.id"
+      :class="{
+        'window-form--active': activeWindowId === window.id,
+      }"
+    />
+  </main>
 </template>
 
 <script>
-import appHeader from "@/components/app-header.vue";
+import appHeader from "@/components/app-header";
+import appBody from "@/components/app-body";
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
 
 export default {
   components: {
     appHeader,
+    appBody,
   },
   name: "App",
+  setup() {
+    const store = useStore();
+    const windows = computed(() => store.state.windows);
+    const activeWindowId = computed(() => store.state.activeWindowId);
+
+    onMounted(() => {
+      store.commit("SECELT_WINDOW", { id: windows.value[0].id });
+    });
+
+    return {
+      windows,
+      activeWindowId,
+    };
+  },
 };
 </script>
 

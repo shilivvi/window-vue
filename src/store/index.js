@@ -10,6 +10,7 @@ export default createStore({
   state: {
     windows: windows,
     indexWindow: 0,
+    activeWindowId: "",
   },
   getters: {},
   mutations: {
@@ -21,6 +22,9 @@ export default createStore({
     },
     DEL_WINDOW(state, { id }) {
       state.windows = state.windows.filter((window) => window.id !== id);
+    },
+    SECELT_WINDOW(state, { id }) {
+      state.activeWindowId = id;
     },
   },
   actions: {},
