@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\Api\AuthResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function bcrypt;
 use function response;
@@ -26,14 +26,9 @@ class AuthController extends Controller
         return new AuthResource($user);
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email|string|exists:users,email',
-            'password' => [
-                'required',
-            ],
-        ]);
+        $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
             return response([
