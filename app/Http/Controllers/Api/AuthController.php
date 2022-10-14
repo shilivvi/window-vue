@@ -3,25 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Resources\Api\AuthResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Password;
 use function bcrypt;
 use function response;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
-        $data = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|string|unique:users,email',
-            'password' => [
-                'required',
-                'confirmed',
-                Password::min(8)->mixedCase()->numbers()->symbols()
-            ],
-        ]);
+    public function register(RegisterRequest $request)
+    {
+        $data = $request->only('name', 'email', 'password');
 
         $user = User::create([
             'name' => $data['name'],
@@ -29,36 +23,26 @@ class AuthController extends Controller
             'password' => bcrypt($data['password'])
         ]);
 
-        $token = $user->createToken('main')->plainTextToken;
-
-        return response([
-            'user' => $user,
-            'token' => $token
-        ]);
+        return new AuthResource($user);
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
-            'email' => 'required|email|string|exist:users,email',
+            'email' => 'required|email|string|exists:users,email',
             'password' => [
                 'required',
             ],
         ]);
 
-        if(!Auth::attempt($credentials)){
+        if (!Auth::attempt($credentials)) {
             return response([
                 'error' => 'The provided credentials are not correct',
-
             ], 422);
         }
 
         $user = Auth::user();
 
-        $token = $user->createToken('main')->plainTextToken;
-
-        return response([
-            'user' => $user,
-            'token' => $token
-        ]);
+        return new AuthResource($user);
     }
 }
