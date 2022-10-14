@@ -69,4 +69,126 @@ class AuthControllerTest extends TestCase
                 ],
             ]);
     }
+
+    public function testValidateNameRegisterUser(){
+        //Test name required
+        $response = $this->post($this->url . 'register', [
+            'email' => $this->user['email'],
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'name'
+                ],
+            ]);
+
+        //Test name string
+        $response = $this->post($this->url . 'register', [
+            'name' => 123,
+            'email' => $this->user['email'],
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'name'
+                ],
+            ]);
+    }
+
+    public function testValidateEmailRegisterUser(){
+        //Test email required
+        $response = $this->post($this->url . 'register', [
+            'name' => $this->user['name'],
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'email'
+                ],
+            ]);
+
+        //Test email string
+        $response = $this->post($this->url . 'register', [
+            'name' => $this->user['name'],
+            'email' => 123,
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'email'
+                ],
+            ]);
+
+        //Test email valid
+        $response = $this->post($this->url . 'register', [
+            'name' => $this->user['name'],
+            'email' => 'juststring',
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'email'
+                ],
+            ]);
+
+        //Test email unique
+        $this->post($this->url . 'register', [
+            'name' => $this->user['name'],
+            'email' => $this->user['email'],
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response = $this->post($this->url . 'register', [
+            'name' => $this->user['name'],
+            'email' => $this->user['email'],
+            'password' => $this->password,
+            'password_confirmation' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'email'
+                ],
+            ]);
+    }
+
+    public function testValidatePasswordRegisterUser(){
+        //Test password_confirmation required
+        $response = $this->post($this->url . 'register', [
+            'name' => $this->user['name'],
+            'email' => $this->user['email'],
+            'password' => $this->password,
+        ]);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonStructure([
+                'errors' => [
+                    'password'
+                ],
+            ]);
+    }
 }
