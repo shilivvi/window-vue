@@ -11,3 +11,4 @@ mix
       require('postcss-sort-media-queries')
     ]
   })
+  .copy('resources/bootstrap/css/bootstrap.min.css', 'public/css/bootstrap.min.css')
