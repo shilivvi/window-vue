@@ -17769,6 +17769,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/utils.js":
+/*!*******************************!*\
+  !*** ./resources/js/utils.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "saveStatePlugin": () => (/* binding */ saveStatePlugin)
+/* harmony export */ });
+function saveStatePlugin(store) {
+  store.subscribe(function (mutation, state) {
+    localStorage.setItem('windows', JSON.stringify(state.windows));
+    localStorage.setItem('token', state.token);
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/vue/router/router.js":
 /*!*******************************************!*\
   !*** ./resources/js/vue/router/router.js ***!
@@ -17830,11 +17849,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/utils */ "./resources/js/utils.js");
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
+
+var token = localStorage.getItem('token') || null;
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.createStore)({
   state: {
-    token: null
+    token: token,
+    windows: []
   },
   getters: {
     getToken: function getToken(state) {
@@ -17843,7 +17866,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
   },
   actions: {},
   modules: {},
-  mutations: {}
+  mutations: {},
+  plugins: [_utils__WEBPACK_IMPORTED_MODULE_0__.saveStatePlugin]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 

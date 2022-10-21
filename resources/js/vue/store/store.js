@@ -1,8 +1,12 @@
 import {createStore} from "vuex";
+import {saveStatePlugin} from "@/utils";
+
+const token = localStorage.getItem('token') || null
 
 const store = createStore({
   state: {
-    token: null
+    token: token,
+    windows: [],
   },
   getters: {
     getToken(state){
@@ -17,7 +21,10 @@ const store = createStore({
   },
   mutations: {
 
-  }
+  },
+  plugins: [
+    saveStatePlugin
+  ]
 })
 
 export default store
