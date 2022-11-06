@@ -7,7 +7,7 @@
     <title>Windows-vue</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">--}}
 
     <script src="{{ asset('js/app.js') }}" defer></script>
   </head>

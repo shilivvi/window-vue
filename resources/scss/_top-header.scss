@@ -1,0 +1,59 @@
+.top-header {
+
+  padding: 5px 0;
+
+  @media (max-width:992px){
+    display: none;
+  }
+
+  // .top-header__wrapper
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // .top-header__right
+
+  &__right {
+  }
+
+  // .top-header__how-work
+
+  &__how-work {
+    color: $secondary-text;
+    font-size: 1.4em;
+    line-height: 143%;
+    padding: 10px 0;
+    cursor: pointer;
+
+    margin-right: 22px;
+  }
+
+  // .top-header__conditions
+
+  &__conditions {
+    color: $secondary-text;
+    font-size: 1.4em;
+    line-height: 143%;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  // .top-header__left
+
+  &__left {
+  }
+
+  // .top-header__order-calculation
+
+  &__order-calculation {
+    color: #fff;
+    font-size: 1.4em;
+    line-height: 143%;
+    padding: 10px 0;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

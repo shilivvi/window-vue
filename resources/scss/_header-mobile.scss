@@ -1,0 +1,45 @@
+.header-mobile {
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media (min-width:992px){
+    display: none;
+  }
+  @media (max-width:992px){
+    display: flex !important;
+  }
+
+  // .header-mobile__logo
+
+  &__logo {
+    max-width: 232px;
+    margin: 0 auto;
+  }
+
+  // .header-mobile__title
+
+  &__title {
+    font-family: 'Jost';
+    font-weight: 800;
+    font-size: 2.6em;
+    line-height: 120%;
+    text-align: center;
+    color: #FFFFFF;
+
+    margin-top: 16px;
+  }
+
+  // .header-mobile__btn
+
+  &__btn {
+    margin-top: 10px;
+    color: #B7D2F7;
+    text-decoration: underline;
+    font-size: 1.4em;
+    line-height: 143%;
+    cursor: pointer;
+    text-align: center;
+  }
+}
