@@ -10,7 +10,6 @@
         v-model="email"
         type="text"
         class="form-control"
-        value=""
         name="email"
         id="inputEmail"
       >
