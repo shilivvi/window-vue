@@ -6,8 +6,8 @@ export function saveStatePlugin(store){
         JSON.stringify(state.windows)
       )
       localStorage.setItem(
-        'token',
-        state.token
+        'user',
+        JSON.stringify(state.user)
       )
     }
   )

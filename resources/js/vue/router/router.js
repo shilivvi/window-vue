@@ -1,7 +1,7 @@
 import AdminLayout from '@/vue/layouts/AdminLayout';
 import AdminLogin from  '@/vue/pages/AdminLogin';
 import AdminDashboard from  '@/vue/pages/AdminDashboard';
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHashHistory} from "vue-router";
 import store from '@/vue/store/store';
 
 const routes = [
@@ -14,7 +14,6 @@ const routes = [
         name: 'admin-dashboard',
         component: AdminDashboard,
         beforeEnter: (to, from, next) => {
-          console.log(store.getters.getToken)
           if(store.getters.getToken){
             next()
           }else{
@@ -32,7 +31,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 })
 export default router

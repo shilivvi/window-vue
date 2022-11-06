@@ -1,25 +1,37 @@
-import {createStore} from "vuex";
-import {saveStatePlugin} from "@/utils";
+import {createStore} from 'vuex';
+import {saveStatePlugin} from '@/utils';
+import axios from 'axios';
 
-const token = localStorage.getItem('token') || null
+const user = localStorage.getItem('token') || []
 
 const store = createStore({
   state: {
-    token: token,
+    user,
     windows: [],
   },
   getters: {
     getToken(state){
-      return state.token
+      return state.user?.token
     }
   },
-  actions: {
+  mutations: {
 
+  },
+  actions: {
+    login({commit}, credentials) {
+      return axios.post(
+        'http://window-vue/api/v1/login',
+        {
+          email: credentials.email,
+          password: credentials.password
+        }
+      )
+        .then((response) => {
+          console.log('okey');
+        })
+    }
   },
   modules: {
-
-  },
-  mutations: {
 
   },
   plugins: [
