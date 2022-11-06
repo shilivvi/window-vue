@@ -6,10 +6,10 @@
         <div class="top-header__wrapper">
           <div class="top-header__right">
             <button class="top-header__how-work btn-reset">Как это работает</button>
-            <button class="top-header__conditions btn-reset terms-use-btn">Условия использования сервиса</button>
+            <button class="top-header__conditions btn-reset">Условия использования сервиса</button>
           </div>
           <div class="top-header__left">
-            <button class="top-header__order-calculation btn-reset individual-project-btn">Заказать просчёт элементов по индивидуальному проекту</button>
+            <button class="top-header__order-calculation btn-reset">Заказать просчёт элементов по индивидуальному проекту</button>
           </div>
         </div>
       </div>
@@ -39,16 +39,21 @@
           </div>
           <div class="header__bottom">
             <ul class="header__tabs tabs-header">
-              <li data-window-name="Окно 1" data-tab="1" class="tabs-header__tab tabs-header__tab--active">
-                <span class="tabs-header__title">
-                  <p>Окно 1</p>
-                </span>
-                <button class="tabs-header__close btn-reset btn-del-window">
-                  <img src="img/close.svg" alt="Удалить окно">
-                </button>
-              </li>
+              <header-tab
+                v-for="window in windows"
+                :key="window.id"
+                :class="{ 'tabs-header__tab--active': curId === window.id }"
+                @click.prevent="selectWindow(window.id)"
+                :id="window.id"
+                @deleteWindow="(windowId) => delWindow(windowId)"
+              >
+                {{ window.name }}
+              </header-tab>
             </ul>
-            <button id="add-window" class="tabs-header__add-new btn-reset">
+            <button
+              class="tabs-header__add-new btn-reset"
+              @click.prevent="addWindow()"
+            >
               <span class="tabs-header__add">
                 <img width="10" height="10" src="img/plus.svg" alt="добавить проём">
               </span>
@@ -62,5 +67,15 @@
 </template>
 
 <script setup>
+import HeaderTab from "@/vue/components/HeaderTab"
+import { computed } from "vue";
+import { useStore } from "vuex";
 
+const store = useStore()
+const windows = computed(() => store.state.windows)
+const curId = computed(() => store.state.curId)
+
+const addWindow = () => store.commit('setNewWindow')
+const selectWindow = (windowId) => store.commit('setCurWindow', windowId)
+const delWindow = (windowId) => store.commit('delWindow', windowId)
 </script>

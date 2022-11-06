@@ -7,7 +7,15 @@ const user = localStorage.getItem('token') || []
 const store = createStore({
   state: {
     user,
-    windows: [],
+    windows: [
+      {
+        id: 0,
+        name: 'Окно 1',
+        details: {}
+      }
+    ],
+    curId: 0,
+    counterIds: 1
   },
   getters: {
     getToken(state){
@@ -15,7 +23,24 @@ const store = createStore({
     }
   },
   mutations: {
-
+    setNewWindow(state){
+      const newWindow = {
+        id: state.counterIds++,
+        name: 'Окно ' + state.counterIds,
+        details: {}
+      }
+      state.windows.push(newWindow)
+    },
+    setCurWindow(state, windowId){
+      state.curId = windowId
+      console.log('setCurWindow = ' + windowId)
+    },
+    delWindow(state, windowId){
+      if(state.windows.length > 1){
+        state.windows = state.windows.filter(window => window.id !== windowId)
+        state.curId = state.windows[0].id
+      }
+    }
   },
   actions: {
     login({commit}, credentials) {
