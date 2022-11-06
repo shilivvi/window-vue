@@ -12,3 +12,4 @@ mix
     ]
   })
   .copy('resources/bootstrap/css/bootstrap.min.css', 'public/css/bootstrap.min.css')
+  .copyDirectory('resources/img', 'public/img');
