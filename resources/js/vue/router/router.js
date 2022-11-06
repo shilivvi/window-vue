@@ -1,6 +1,7 @@
 import AdminLayout from '@/vue/layouts/AdminLayout';
 import AdminLogin from  '@/vue/pages/AdminLogin';
 import AdminDashboard from  '@/vue/pages/AdminDashboard';
+import AppLayout from '@/vue/layouts/AppLayout';
 import {createRouter, createWebHashHistory} from "vue-router";
 import store from '@/vue/store/store';
 
@@ -27,6 +28,10 @@ const routes = [
         component: AdminLogin,
       }
     ]
+  },
+  {
+    path: '/',
+    component: AppLayout
   }
 ]
 
