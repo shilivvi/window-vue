@@ -1,0 +1,70 @@
+.element {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #232323;
+  
+  width: 100%;
+  padding: 12px 0;
+
+  cursor: pointer;
+
+  transition: box-shadow .3s ease-in-out;
+
+  @media (hover: hover) {
+    &:hover{
+      box-shadow: 0px 0px 20px #76A9FF;
+    }
+  }
+
+  // .element__status
+
+  &--set{
+
+    background: linear-gradient(195.96deg, #82A5E6 15.11%, #3A65A0 89.23%);
+
+    .element__check{
+      display: block;
+    }
+
+    .element__uncheck{
+      display: none;
+    }
+
+  }
+
+  &__status {
+
+  }
+
+  // .element__check
+
+  &__check {
+    width: 24px;
+    height: 24px;
+
+    display: none;
+  }
+
+  // .element__uncheck
+
+  &__uncheck {
+    width: 24px;
+    height: 24px;
+  }
+
+  // .element__title
+
+  &__title {
+    font-family: 'SourceSansPro';
+    color: #fff;
+    font-size: 1.7em;
+    line-height: 118%;
+    font-weight: 400;
+
+    margin-top: 5px;
+  }
+}

@@ -1,0 +1,179 @@
+.all-details {
+
+  margin-top: 40px;
+  margin-bottom: 100px;
+
+  &--open{
+    .all-details__arrow{
+      transform: rotate(180deg);
+    }
+  }
+
+  // .all-details__top
+
+  &__top {
+    padding: 18px 38px;
+    background: #232323;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+
+    @media (max-width: 540px){
+      padding: 15px;
+    }
+  }
+
+  // .all-details__title
+
+  &__title {
+    font-family: 'OpenSans';
+    font-weight: 700;
+    font-size: 1.8em;
+    line-height: 111%;
+
+    @media (max-width: 540px){
+      display: none;
+    }
+
+    &--mob{
+      display: block !important;
+      @media (min-width: 541px){
+        display: none !important;
+      }
+    }
+  }
+
+  // .all-details__arrow
+
+  &__arrow {
+    
+    & > img{
+      width: 10px;
+      height: 5px;
+    }
+
+  }
+
+  // .all-details__body
+
+  &__body {
+    font-family: 'SourceSansPro';
+    font-weight: 400;
+    font-size: 1.6em;
+    line-height: 125%;
+  }
+
+  &__header{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 21px;
+
+    background: #3F3F3F;
+    padding: 14px 38px;
+
+    font-family: 'SourceSansPro';
+    font-weight: 400;
+    font-size: 1.6em;
+    line-height: 125%;
+
+    @media (max-width: 540px){
+      padding: 15px;
+    }
+
+    @media (max-width: 425px){
+      font-size: 1.4em;
+    }
+  }
+
+  &__col{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 21px;
+
+    padding: 12px 38px;
+
+    font-family: 'SourceSansPro';
+    font-weight: 400;
+    font-size: 1.6em;
+    line-height: 125%;
+
+    @media (max-width: 540px){
+      padding: 15px;
+    }
+  }
+
+  &__name{
+    & span{
+      color: #3F3F3F;
+    }
+
+    @media (max-width: 540px){
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+
+  &__price{
+    align-self: center;
+    justify-self: center;
+  }
+
+  &__units{
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  &__count{
+    align-self: center;
+    justify-self: center;
+  }
+
+  &__del{
+    background: none;
+
+    align-self: center;
+    justify-self: center;
+
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (hover: hover) {
+      &:hover svg{
+        fill: #fff;
+      }
+    }
+
+    & svg{
+      width: 12px;
+      height: 12px;
+      fill: #3f3f3f;
+
+      transition: fill .3s ease-in-out;
+    }
+  }
+
+  &__bottom{
+
+    margin-bottom: 15px;
+
+    display: none;
+
+  }
+
+  &__col{
+    border-bottom: 1px solid #D7D7DB;
+
+    @media (max-width: 425px){
+      font-size: 1.4em;
+    }
+  }
+
+  
+}

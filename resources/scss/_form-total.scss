@@ -1,0 +1,43 @@
+.form-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: 'OpenSans';
+  font-weight: 700;
+
+  padding: 24px 20px;
+  border-top: 1px solid #3F3F3F;
+  border-bottom: 1px solid #3F3F3F;
+
+  margin-top: 30px;
+
+  @media (max-width:992px){
+    flex-direction: column;
+  }
+
+  // .form-total__left
+
+  &__left {
+    font-size: 2em;
+    line-height: 109%;
+
+    max-width: 250px;
+
+    @media (max-width:992px){
+      text-align: center;
+      max-width: none;
+    }
+  }
+
+  // .form-total__right
+
+  &__right {
+    font-size: 2.2em;
+    line-height: 109%;
+
+    @media (max-width:992px){
+      margin-top: 25px;
+    }
+  }
+}
