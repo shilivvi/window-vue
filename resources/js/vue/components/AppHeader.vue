@@ -67,15 +67,15 @@
 </template>
 
 <script setup>
-import HeaderTab from "@/vue/components/HeaderTab"
-import { computed } from "vue";
-import { useStore } from "vuex";
+  import HeaderTab from "@/vue/components/HeaderTab"
+  import { computed } from "vue";
+  import { useStore } from "vuex";
 
-const store = useStore()
-const windows = computed(() => store.state.windows)
-const curId = computed(() => store.state.curId)
+  const store = useStore()
+  const windows = computed(() => store.state.windows)
+  const curId = computed(() => store.state.curId)
 
-const addWindow = () => store.commit('setNewWindow')
-const selectWindow = (windowId) => store.commit('setCurWindow', windowId)
-const delWindow = (windowId) => store.commit('delWindow', windowId)
+  const addWindow = () => store.commit('setNewWindow')
+  const selectWindow = (windowId) => store.commit('setCurWindow', windowId)
+  const delWindow = (windowId) => store.commit('delWindow', windowId)
 </script>
